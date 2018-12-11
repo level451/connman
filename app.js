@@ -1,5 +1,6 @@
 connectssid('tw24','22224444')
 function connectssid(ssidWanted,passphrase) {
+  //connect('wifi_0200b23055b1_74773234_managed_psk')
     var exec = require('child_process').exec;
     console.log('scanning wifi');
     exec('connmanctl scan wifi', (error, stdout, stderr) => {
@@ -44,11 +45,11 @@ function connectssid(ssidWanted,passphrase) {
                     // if we connected to the right access point we would have exited already
                     console.log('Connected to wrong access point:'+ssid+' - disconnecting')
                     //call discconect then callback connect
-                    disconnect(connectedPath,function(){connect(pathWanted,ssidWanted)})
+                    disconnect(connectedPath,function(){connect(pathWanted)})
                 } else
                 {
                     console.log('not connected - connecting')
-                    connect(pathWanted, ssidWanted)
+                    connect(pathWanted)
                 }
             }
 
@@ -71,18 +72,41 @@ function connectssid(ssidWanted,passphrase) {
         })
 
     }
-    function connect(p,s){
+
+
+    // function connect(p){
+    //     exec('rm  /var/lib/connman/*.config', (error, stdout, stderr) => {
+    //         console.log('deleted all saved access points')
+    //         var child = exec('connmanctl');
+    //
+    //         child.stdout.on('data', function (data) {
+    //             console.log('attemting to connect to '+p,s)
+    //
+    //         })
+    //         child.on('close', function (code) {
+    //             console.log('closing code: ' + code);
+    //         });
+    //         child.stderr.on('data', function (data) {
+    //             console.log('stdoerr: ' + data)
+    //         });
+    //
+    //
+    //
+    //
+    //     })
+    // }
+
+    function connect(p){
         const fs = require('fs')
 
-        console.log('attemting to connect to '+p,s)
-        exec('rm -rf /var/lib/connman/wifi*', (error, stdout, stderr) => {
+        console.log('attemting to connect to '+p)
+        exec('rm /var/lib/connman/*.config', (error, stdout, stderr) => {
             console.log('deleting all saved access points')
             console.log(`stdout: ${stdout}`);
             console.log(`stderr: ${stderr}`);
-            fs.mkdirSync('/var/lib/connman/'+p)
-            var settingsFile = '['+p+']\rType=wifi\rName='+s+'\rPassphrase='+ passphrase+'\rSSID='+p.split('_')[2]+'\rAutoConnect=true\r'
+            var settingsFile = '[service_'+p+']\rType=wifi\rName='+s+'\rPassphrase='+ passphrase+'\r'
 
-            fs.writeFileSync('/var/lib/connman/'+p+'/settings',settingsFile)
+            fs.writeFileSync('/var/lib/connman/accesspoint.config',settingsFile)
             // exec('connmanctl connect '+p, (error, stdout, stderr) => {
             // console.log('connection results')
             //     console.log(`stdout: ${stdout}`);
