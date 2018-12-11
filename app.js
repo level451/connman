@@ -68,4 +68,7 @@ function connectssid(ssidWanted,passphrase) {
         })
 
     }
+    function connect(p,s){
+        console.log('attemting to connect to 'p,s)
+    }
 }
