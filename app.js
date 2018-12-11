@@ -13,6 +13,7 @@ function connectssid(ssidWanted,passphrase) {
             var ssidWantedIsVisible = false
             var ssid;
             var path;
+            var connectedPath;
             console.log('Looking for connected access point ' + data.length)
             for (var i = 0; i < data.length; ++i) {
                 ssid = data[i].substring(4, data[i].lastIndexOf(' ')).trim();
@@ -20,7 +21,7 @@ function connectssid(ssidWanted,passphrase) {
                 if (data[i].substr(0, 3) == '*AO' || data[i].substr(0, 3) == '*AR') {
                     connected = true;
                     console.log('Connected access point found#' + i)
-
+                    connectedPath = path;
                     console.log('ssid:' + ssid)
                     console.log('path:' + path)
                     if (ssidWanted == ssid){
@@ -43,7 +44,7 @@ function connectssid(ssidWanted,passphrase) {
                     // if we connected to the right access point we would have exited already
                     console.log('Connected to wrong access point:'+ssid+' - disconnecting')
                     //call discconect then callback connect
-                    disconnect(path,function(){connect(pathWanted,ssidWanted)})
+                    disconnect(connectedPath,function(){connect(pathWanted,ssidWanted)})
                 } else
                 {
                     console.log('not connected - connecting')
