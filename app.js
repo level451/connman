@@ -17,7 +17,7 @@ exec('connmanctl scan wifi', (error, stdout, stderr) => {
                 connected = true;
                 console.log('Connected access point found#'+i)
                 ssid = data[i].substring(4,data[i].lastIndexOf(' ')).trim();
-               // path = data[i].split('\t')[2].trim();
+                path = data[i].substr(data[i].lastIndexOf(' ')).trim();
                 console.log('ssid:'+ssid)
                 console.log('path:'+path)
                 console.log(data[i].split('\t'));
