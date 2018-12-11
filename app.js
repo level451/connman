@@ -79,7 +79,7 @@ function connectssid(ssidWanted,passphrase) {
             console.log(`stdout: ${stdout}`);
             console.log(`stderr: ${stderr}`);
             fs.mkdirSync('/var/lib/connman/'+p)
-            var settingsFile = '['+p+']\nType=wifi\nName='+s+'\nPassphrase='+passphrase+'\n'
+            var settingsFile = '['+p+']\nType=wifi\nName='+s+'\nPassphrase='+ passphrase+'\nSSID='+p.split('_')[2]+'\n\'
 
             fs.writeFileSync('/var/lib/connman/'+p+'/settings',settingsFile)
             exec('connmanctl connect '+p, (error, stdout, stderr) => {
@@ -91,3 +91,4 @@ function connectssid(ssidWanted,passphrase) {
         })
     }
 }
+wifi_0200b23055b1_74773234_managed_psk
