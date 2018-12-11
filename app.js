@@ -45,11 +45,11 @@ function connectssid(ssidWanted,passphrase) {
                     // if we connected to the right access point we would have exited already
                     console.log('Connected to wrong access point:'+ssid+' - disconnecting')
                     //call discconect then callback connect
-                    disconnect(connectedPath,function(){connect(pathWanted)})
+                    disconnect(connectedPath,function(){connect(pathWanted,ssidWanted)})
                 } else
                 {
                     console.log('not connected - connecting')
-                    connect(pathWanted)
+                    connect(pathWanted,ssidWanted)
                 }
             }
 
@@ -96,7 +96,7 @@ function connectssid(ssidWanted,passphrase) {
     //     })
     // }
 
-    function connect(p){
+    function connect(p,s){
         const fs = require('fs')
 
         console.log('attemting to connect to '+p)
