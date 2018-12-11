@@ -86,7 +86,6 @@ function connectssid(ssidWanted,passphrase) {
             console.log('connection results')
                 console.log(`stdout: ${stdout}`);
                 console.log(`stderr: ${stderr}`);
-
             })
         })
     }
