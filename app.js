@@ -71,6 +71,23 @@ function connectssid(ssidWanted,passphrase) {
 
     }
     function connect(p,s){
+        const fs = require('fs')
+
         console.log('attemting to connect to '+p,s)
+        exec('rm -rf /var/lib/connman/wifi*', (error, stdout, stderr) => {
+            console.log('deleting all saved access points')
+            console.log(`stdout: ${stdout}`);
+            console.log(`stderr: ${stderr}`);
+            fs.mkdirSync('/var/lib/connman/'+p)
+            var settingsFile = '['+p+'}\nName='+s+'\nPassphrase='+passphrase+'\n'
+
+            fs.writeFileSync('/var/lib/connman/'+p+'/settings',settingsFile)
+            exec('connmanctl connect '+inpath, (error, stdout, stderr) => {
+            console.log('connection results')
+                console.log(`stdout: ${stdout}`);
+                console.log(`stderr: ${stderr}`);
+                cb()
+            })
+        })
     }
 }
