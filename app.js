@@ -15,6 +15,7 @@ exec('connmanctl scan wifi', (error, stdout, stderr) => {
             if (data[i].substr(0,3)=='*AO'){
                 connected = true;
                 ssid = data[i].split('  ')[0]
+
                 console.log('ssid:'+ssid)
 
             }
