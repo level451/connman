@@ -8,6 +8,18 @@ exec('connmanctl scan wifi', (error, stdout, stderr) => {
     child.stdout.on('data', function (data) {
         console.log(data + '%');
         res = data.split('\n');
+        var connected = false;
+        var ssid;
+        var path;
+        for (var i=0; i < data.length;++i){
+            if (data[i].substr(0,3)=='*A0'){
+                connected = true;
+                ssid = data[i].split('  ')[0]
+                console.log('ssid:'+ssid)
+
+            }
+
+        }
         console.log(res[0].split('      '));
 
     });
