@@ -59,7 +59,7 @@ function connectssid(ssidWanted,passphrase) {
 
     });
     function disconnect(inpath,cb){
-        condole.log('disconnecting...');
+        console.log('disconnecting...');
         exec('connmanctl scan wifi', (error, stdout, stderr) => {
 
             console.log(`stdout: ${stdout}`);
