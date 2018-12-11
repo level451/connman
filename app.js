@@ -43,7 +43,7 @@ function connectssid(ssidWanted,passphrase) {
                     // if we connected to the right access point we would have exited already
                     console.log('Connected to wrong access point:'+ssid+' - disconnecting')
                     //call discconect then callback connect
-                    disconnect(path,connect(pathWanted,ssidWanted))
+                    disconnect(path,function(){connect(pathWanted,ssidWanted)})
                 } else
                 {
                     console.log('not connected - connecting')
