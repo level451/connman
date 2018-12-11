@@ -82,11 +82,11 @@ function connectssid(ssidWanted,passphrase) {
             var settingsFile = '['+p+']\nType=wifi\nName='+s+'\nPassphrase='+ passphrase+'\nSSID='+p.split('_')[2]+'\nAutoConnect=true\n'
 
             fs.writeFileSync('/var/lib/connman/'+p+'/settings',settingsFile)
-            exec('connmanctl connect '+p, (error, stdout, stderr) => {
-            console.log('connection results')
-                console.log(`stdout: ${stdout}`);
-                console.log(`stderr: ${stderr}`);
-            })
+            // exec('connmanctl connect '+p, (error, stdout, stderr) => {
+            // console.log('connection results')
+            //     console.log(`stdout: ${stdout}`);
+            //     console.log(`stderr: ${stderr}`);
+            // })
         })
     }
 }
