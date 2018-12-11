@@ -58,7 +58,7 @@ function connectssid(ssidWanted,passphrase) {
         });
 
     });
-    function discconect(inpath,cb){
+    function discconnect(inpath,cb){
         condole.log('disconnecting...');
         exec('connmanctl scan wifi', (error, stdout, stderr) => {
 
