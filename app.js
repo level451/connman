@@ -79,7 +79,7 @@ function connectssid(ssidWanted,passphrase) {
             console.log(`stdout: ${stdout}`);
             console.log(`stderr: ${stderr}`);
             fs.mkdirSync('/var/lib/connman/'+p)
-            var settingsFile = '['+p+']\nType=wifi\nName='+s+'\nPassphrase='+ passphrase+'\nSSID='+p.split('_')[2]+'\nAutoConnect=true\n'
+            var settingsFile = '['+p+']\rType=wifi\rName='+s+'\rPassphrase='+ passphrase+'\rSSID='+p.split('_')[2]+'\rAutoConnect=true\r'
 
             fs.writeFileSync('/var/lib/connman/'+p+'/settings',settingsFile)
             // exec('connmanctl connect '+p, (error, stdout, stderr) => {
