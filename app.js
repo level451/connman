@@ -1,4 +1,4 @@
-connectssid('w24','22224444')
+connectssid('tw24','22224444')
 function connectssid(ssidWanted,passphrase) {
     var exec = require('child_process').exec;
     console.log('scanning wifi');
@@ -28,7 +28,7 @@ function connectssid(ssidWanted,passphrase) {
                         return(0);
                     }
                 }
-                if (ssidWanted = ssid){
+                if (ssidWanted == ssid){
                     var pathWanted = path;
                     ssidWantedIsVisible = true
                     break;
@@ -82,7 +82,7 @@ function connectssid(ssidWanted,passphrase) {
             var settingsFile = '['+p+'}\nName='+s+'\nPassphrase='+passphrase+'\n'
 
             fs.writeFileSync('/var/lib/connman/'+p+'/settings',settingsFile)
-            exec('connmanctl connect '+inpath, (error, stdout, stderr) => {
+            exec('connmanctl connect '+p, (error, stdout, stderr) => {
             console.log('connection results')
                 console.log(`stdout: ${stdout}`);
                 console.log(`stderr: ${stderr}`);
