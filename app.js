@@ -17,7 +17,7 @@ function connectssid(ssidWanted,passphrase) {
             for (var i = 0; i < data.length; ++i) {
                 ssid = data[i].substring(4, data[i].lastIndexOf(' ')).trim();
                 path = data[i].substr(data[i].lastIndexOf(' ')).trim();
-                if (data[i].substr(0, 3) == '*AO') {
+                if (data[i].substr(0, 3) == '*AO' || data[i].substr(0, 3) == '*AR') {
                     connected = true;
                     console.log('Connected access point found#' + i)
 
