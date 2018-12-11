@@ -18,4 +18,4 @@ exec('connmanctl scan wifi', (error, stdout, stderr) => {
         console.log('closing code: ' + code);
     });
 
-}
+});
