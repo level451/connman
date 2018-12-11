@@ -91,4 +91,3 @@ function connectssid(ssidWanted,passphrase) {
         })
     }
 }
-wifi_0200b23055b1_74773234_managed_psk
