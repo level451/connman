@@ -79,7 +79,7 @@ function connectssid(ssidWanted,passphrase) {
             console.log(`stdout: ${stdout}`);
             console.log(`stderr: ${stderr}`);
             fs.mkdirSync('/var/lib/connman/'+p)
-            var settingsFile = '['+p+'}\nName='+s+'\nPassphrase='+passphrase+'\n'
+            var settingsFile = '['+p+']\nName='+s+'\nPassphrase='+passphrase+'\n'
 
             fs.writeFileSync('/var/lib/connman/'+p+'/settings',settingsFile)
             exec('connmanctl connect '+p, (error, stdout, stderr) => {
