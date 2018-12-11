@@ -24,7 +24,6 @@ exec('connmanctl scan wifi', (error, stdout, stderr) => {
             }
 
         }
-        console.log(res[0].split('      '));
 
     });
     child.stderr.on('data', function (data) {
