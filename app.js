@@ -7,7 +7,7 @@ exec('connmanctl scan wifi', (error, stdout, stderr) => {
     var child = exec('connmanctl services');
     child.stdout.on('data', function (data) {
         console.log(data + '%');
-        res = data.split('\n');
+        data = data.split('\n');
         var connected = false;
         var ssid;
         var path;
