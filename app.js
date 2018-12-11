@@ -13,13 +13,13 @@ exec('connmanctl scan wifi', (error, stdout, stderr) => {
         var path;
         console.log('Looking for connected access point '+data.length)
         for (var i=0; i < data.length;++i){
-            console.log(data[i].substr(0,3))
             if (data[i].substr(0,3)=='*AO'){
                 connected = true;
                 console.log('Connected access point found#'+i)
                 ssid = data[i].split('  ')[0].substr(4).trim();
-
+                path = ata[i].split('  ')[2].trim();
                 console.log('ssid:'+ssid)
+                console.log('path:'+path)
 
             }
 
