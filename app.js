@@ -84,7 +84,7 @@ function connectssid(ssidWanted,passphrase) {
             var child = exec('connmanctl');
 
             child.stdout.on('data', function (data) {
-                console.log('--'+data+'%')
+                console.log('--'+data+'%'+state)
                 switch (state){
                     case 0:
                    console.log ('turning agent on')
@@ -98,7 +98,7 @@ function connectssid(ssidWanted,passphrase) {
                         ++state
                         break;
                     case 2:
-                      if (data.indexOf('Passphrase?' != -1 )){
+                      if (data.indexOf('Passphrase?') != -1 ){
                         console.log ('sending passphrase')
                         child.stdin.write(passphrase+'\n')
                         ++state
@@ -110,7 +110,7 @@ function connectssid(ssidWanted,passphrase) {
 
                     case 3:
                         console.log ('exiting')
-                        child.stdin.write('exit\n')
+                       // child.stdin.write('exit\n')
                         ++state
                         break;
 
