@@ -110,7 +110,7 @@ function connectssid(ssidWanted,passphrase) {
 
                     case 3:
                         console.log ('exiting')
-                       // child.stdin.write('exit\n')
+                        child.stdin.write('exit\n')
                         ++state
                         break;
 
@@ -118,7 +118,8 @@ function connectssid(ssidWanted,passphrase) {
 
             })
             child.on('close', function (code) {
-                console.log('closing code wifi connected?: ' + code);
+
+                console.log('closing code wifi connected we could check but why bother?: ' + code);
             });
             child.stderr.on('data', function (data) {
                 console.log('stdoerr: ' + data)
