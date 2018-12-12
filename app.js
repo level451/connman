@@ -1,8 +1,8 @@
 connectssid('tw24','22224444')
 function connectssid(ssidWanted,passphrase) {
     var exec = require('child_process').exec;
-    connect('wifi_0200b23055b1_74773234_managed_psk')
-  return
+   // connect('wifi_0200b23055b1_74773234_managed_psk')
+  //return
 
     console.log('scanning wifi');
     exec('connmanctl scan wifi', (error, stdout, stderr) => {
