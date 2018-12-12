@@ -97,12 +97,22 @@ function connectssid(ssidWanted,passphrase) {
                         child.stdin.write('connect '+p+'\n')
                         ++state
                         break;
+                    case 2:
+                        console.log ('sending passphrase')
+                        child.stdin.write(passphrase+'\n')
+                        ++state
+                        break;
+                    case 3:
+                        console.log ('exiting')
+                        child.stdin.write('exit\n')
+                        ++state
+                        break;
 
                 }
 
             })
             child.on('close', function (code) {
-                console.log('closing code: ' + code);
+                console.log('closing code wifi connected?: ' + code);
             });
             child.stderr.on('data', function (data) {
                 console.log('stdoerr: ' + data)
