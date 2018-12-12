@@ -1,8 +1,9 @@
 connectssid('tw24','22224444')
 function connectssid(ssidWanted,passphrase) {
-  connect('wifi_0200b23055b1_74773234_managed_psk')
-  return
     var exec = require('child_process').exec;
+    connect('wifi_0200b23055b1_74773234_managed_psk')
+  return
+
     console.log('scanning wifi');
     exec('connmanctl scan wifi', (error, stdout, stderr) => {
         console.log(`stdout: ${stdout}`);
@@ -76,12 +77,23 @@ function connectssid(ssidWanted,passphrase) {
 
 
     function connect(p){
+        var state =0;
+        console.log('attemting to connect to '+p)
         exec('rm  /var/lib/connman/*.config', (error, stdout, stderr) => {
             console.log('deleted all saved access points')
             var child = exec('connmanctl');
 
             child.stdout.on('data', function (data) {
-                console.log('attemting to connect to '+p,s)
+                console.log('--'+data)
+                switch (state){
+                    case 0:
+                   console.log ('turning agent on')
+                        child.stdin.write('agent on\n')
+                    ++state
+                        break;
+
+
+                }
 
             })
             child.on('close', function (code) {
