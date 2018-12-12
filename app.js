@@ -1,6 +1,7 @@
 connectssid('tw24','22224444')
 function connectssid(ssidWanted,passphrase) {
-  //connect('wifi_0200b23055b1_74773234_managed_psk')
+  connect('wifi_0200b23055b1_74773234_managed_psk')
+  return
     var exec = require('child_process').exec;
     console.log('scanning wifi');
     exec('connmanctl scan wifi', (error, stdout, stderr) => {
@@ -74,44 +75,44 @@ function connectssid(ssidWanted,passphrase) {
     }
 
 
-    // function connect(p){
-    //     exec('rm  /var/lib/connman/*.config', (error, stdout, stderr) => {
-    //         console.log('deleted all saved access points')
-    //         var child = exec('connmanctl');
-    //
-    //         child.stdout.on('data', function (data) {
-    //             console.log('attemting to connect to '+p,s)
-    //
-    //         })
-    //         child.on('close', function (code) {
-    //             console.log('closing code: ' + code);
-    //         });
-    //         child.stderr.on('data', function (data) {
-    //             console.log('stdoerr: ' + data)
-    //         });
-    //
-    //
-    //
-    //
-    //     })
-    // }
+    function connect(p){
+        exec('rm  /var/lib/connman/*.config', (error, stdout, stderr) => {
+            console.log('deleted all saved access points')
+            var child = exec('connmanctl');
 
-    function connect(p,s){
-        const fs = require('fs')
+            child.stdout.on('data', function (data) {
+                console.log('attemting to connect to '+p,s)
 
-        console.log('attemting to connect to '+p)
-        exec('rm /var/lib/connman/*.config', (error, stdout, stderr) => {
-            console.log('deleting all saved access points')
-            console.log(`stdout: ${stdout}`);
-            console.log(`stderr: ${stderr}`);
-            var settingsFile = '[service_'+p+']\rType=wifi\rName='+s+'\rPassphrase='+ passphrase+'\r'
+            })
+            child.on('close', function (code) {
+                console.log('closing code: ' + code);
+            });
+            child.stderr.on('data', function (data) {
+                console.log('stdoerr: ' + data)
+            });
 
-            fs.writeFileSync('/var/lib/connman/accesspoint.config',settingsFile)
-            // exec('connmanctl connect '+p, (error, stdout, stderr) => {
-            // console.log('connection results')
-            //     console.log(`stdout: ${stdout}`);
-            //     console.log(`stderr: ${stderr}`);
-            // })
+
+
+
         })
     }
+
+    // function connect(p,s){
+    //     const fs = require('fs')
+    //
+    //     console.log('attemting to connect to '+p)
+    //     exec('rm /var/lib/connman/*.config', (error, stdout, stderr) => {
+    //         console.log('deleting all saved access points')
+    //         console.log(`stdout: ${stdout}`);
+    //         console.log(`stderr: ${stderr}`);
+    //         var settingsFile = '[service_'+p+']\rType=wifi\rName='+s+'\rPassphrase='+ passphrase+'\r'
+    //
+    //         fs.writeFileSync('/var/lib/connman/accesspoint.config',settingsFile)
+    //         // exec('connmanctl connect '+p, (error, stdout, stderr) => {
+    //         // console.log('connection results')
+    //         //     console.log(`stdout: ${stdout}`);
+    //         //     console.log(`stderr: ${stderr}`);
+    //         // })
+    //     })
+    // }
 }
