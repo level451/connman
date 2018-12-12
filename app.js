@@ -78,10 +78,15 @@ function connectssid(ssidWanted,passphrase) {
 
     function connect(p){
         var state =0;
-        console.log('attemting to connect to '+p)
+        console.log('Deleting connection files')
+
         exec('rm -rf /var/lib/connman/wifi*', (error, stdout, stderr) => {
+            console.log(`stdout: ${stdout}`);
+            console.log(`stderr: ${stderr}`);
+
             console.log('deleted all saved access points')
             var child = exec('connmanctl');
+            console.log('attemting to connect to '+p)
 
             child.stdout.on('data', function (data) {
                 console.log('--'+data+'%'+state)
