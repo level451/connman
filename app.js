@@ -98,10 +98,14 @@ function connectssid(ssidWanted,passphrase) {
                         ++state
                         break;
                     case 2:
+                      if (data.indexOf('Passphrase?' != -1 )){
                         console.log ('sending passphrase')
                         child.stdin.write(passphrase+'\n')
                         ++state
-                        break;
+                      } else
+                      {console.log('waiting for passphrase request')}
+                          break;
+
                     case 3:
                         console.log ('exiting')
                         child.stdin.write('exit\n')
